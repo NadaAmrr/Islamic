@@ -245,12 +245,17 @@ class QuranTab extends StatelessWidget {
           thickness: 3,
           color: Color(0xffb7935f),
         ),
-        Text(
-          "Sura Name",
-          style: TextStyle(
-            fontSize: 25,
-            fontWeight: FontWeight.w600,
-            fontFamily: 'ElMessiri',
+        InkWell(
+          onTap: () {
+
+          },
+          child: Text(
+            "Sura Name",
+            style: TextStyle(
+              fontSize: 25,
+              fontWeight: FontWeight.w600,
+              fontFamily: 'ElMessiri',
+            ),
           ),
         ),
         Divider(
