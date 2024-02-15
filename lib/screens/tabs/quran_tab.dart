@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:islamic/models/sura_model.dart';
+import 'package:islamic/screens/sura_details.dart';
 
 class QuranTab extends StatelessWidget {
   QuranTab({super.key});
+
   List<String> suraNames = [
     "الفاتحه",
     "البقرة",
@@ -245,17 +248,12 @@ class QuranTab extends StatelessWidget {
           thickness: 3,
           color: Color(0xffb7935f),
         ),
-        InkWell(
-          onTap: () {
-
-          },
-          child: Text(
-            "Sura Name",
-            style: TextStyle(
-              fontSize: 25,
-              fontWeight: FontWeight.w600,
-              fontFamily: 'ElMessiri',
-            ),
+        Text(
+          "Sura Name",
+          style: TextStyle(
+            fontSize: 25,
+            fontWeight: FontWeight.w600,
+            fontFamily: 'ElMessiri',
           ),
         ),
         Divider(
@@ -265,9 +263,14 @@ class QuranTab extends StatelessWidget {
         Expanded(
           child: ListView.separated(
             itemBuilder: (context, index) {
-              return Text(suraNames[index],
-                  style: TextStyle(fontFamily: 'ElMessiri', fontSize: 20),
-                  textAlign: TextAlign.center);
+              return InkWell(
+                onTap: () {
+                  Navigator.pushNamed(context, SuraDetailsScreen.routeName, arguments: SuraModel(name: suraNames[index], index: index));
+                },
+                child: Text(suraNames[index],
+                    style: TextStyle(fontFamily: 'ElMessiri', fontSize: 20),
+                    textAlign: TextAlign.center),
+              );
             },
             itemCount: suraNames.length,
             separatorBuilder: (BuildContext context, int index) => Divider(
