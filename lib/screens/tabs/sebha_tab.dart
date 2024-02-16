@@ -49,12 +49,11 @@ class _SebhaTabState extends State<SebhaTab> {
                 onTap: () {
                   counter++;
                   if (counter == 31) {
-                    counter = 0;
                     index++;
                     if (index == tsbeehName.length) {
                       index == 0;
                     }
-                    return;
+                    counter = 0;
                   }
                   setState(() {});
                 },
