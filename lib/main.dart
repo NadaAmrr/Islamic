@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:islamic/screens/home.dart';
+import 'package:islamic/screens/sura_details.dart';
+import 'package:islamic/theme/theme.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,12 +15,12 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Isamic',
-      theme: ThemeData(
-        useMaterial3: true,
-      ),
+      theme: MyThemeData.lightTheme,
+      darkTheme: MyThemeData.darkTheme,
       initialRoute: HomeScreen.routeName,
       routes: {
-        HomeScreen.routeName: (context) => HomeScreen()
+        HomeScreen.routeName: (context) => HomeScreen(),
+        SuraDetailsScreen.routeName: (context) => SuraDetailsScreen()
       },
     );
   }

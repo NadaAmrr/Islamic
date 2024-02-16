@@ -14,7 +14,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  int index =0;
+  int index = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -25,31 +25,15 @@ class _HomeScreenState extends State<HomeScreen> {
               fit: BoxFit.fill
           )),
       child: Scaffold(
-        backgroundColor: Colors.transparent,
         appBar: AppBar(
-          backgroundColor: Colors.transparent,
-          centerTitle: true,
           title: Text(
-            "Islami",
-            style: TextStyle(
-                color: Color(0xff242424),
-                fontSize: 30,
-                fontFamily: 'ElMessiri',
-                fontWeight: FontWeight.bold),
-          ),
-        ),
+            "Islami",),),
         bottomNavigationBar: BottomNavigationBar(
-          backgroundColor: Color(0xffb7935f),
-            showSelectedLabels: false,
-            showUnselectedLabels: false,
-            type: BottomNavigationBarType.fixed,
             currentIndex: index,
             onTap: (value) {
               index = value;
               setState(() {});
             },
-            selectedItemColor: Color(0xff242424),
-            unselectedItemColor: Colors.white,
             items: [
               BottomNavigationBarItem(icon: ImageIcon(AssetImage("assets/images/icon_radio.png")), label: ""),
               BottomNavigationBarItem(icon: ImageIcon(AssetImage("assets/images/icon_sebha.png")), label: ""),
