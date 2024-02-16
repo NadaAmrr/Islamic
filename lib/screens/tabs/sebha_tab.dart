@@ -48,10 +48,11 @@ class _SebhaTabState extends State<SebhaTab> {
             child: InkWell(
                 onTap: () {
                   counter++;
-                  if (counter == 31) {
+                  //rotate
+                  if (counter == 34) {
                     index++;
                     if (index == tsbeehName.length) {
-                      index == 0;
+                      index = 0;
                     }
                     counter = 0;
                   }
