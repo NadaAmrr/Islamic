@@ -250,11 +250,7 @@ class QuranTab extends StatelessWidget {
         ),
         Text(
           "Sura Name",
-          style: TextStyle(
-            fontSize: 25,
-            fontWeight: FontWeight.w600,
-            fontFamily: 'ElMessiri',
-          ),
+          style: Theme.of(context).textTheme.bodyMedium
         ),
         Divider(
           thickness: 3,
@@ -268,7 +264,7 @@ class QuranTab extends StatelessWidget {
                   Navigator.pushNamed(context, SuraDetailsScreen.routeName, arguments: SuraModel(name: suraNames[index], index: index));
                 },
                 child: Text(suraNames[index],
-                    style: TextStyle(fontFamily: 'ElMessiri', fontSize: 20),
+                    style: Theme.of(context).textTheme.bodySmall,
                     textAlign: TextAlign.center),
               );
             },
