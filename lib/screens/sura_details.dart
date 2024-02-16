@@ -41,7 +41,7 @@ class _SuraDetailsScreenState extends State<SuraDetailsScreen> {
             return Text(
               verses[index],
               textAlign: TextAlign.center,
-              style: TextStyle(),
+              style: Theme.of(context).textTheme.bodySmall,
             );
           },
           itemCount: verses.length,
