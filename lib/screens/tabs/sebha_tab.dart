@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:islamic/theme/theme.dart';
 
@@ -8,7 +10,7 @@ class SebhaTab extends StatefulWidget {
   State<SebhaTab> createState() => _SebhaTabState();
 }
 
-class _SebhaTabState extends State<SebhaTab> {
+class _SebhaTabState extends State<SebhaTab> with SingleTickerProviderStateMixin{
   int counter = 0;
   List<String> tsbeehName = [
     "سبحان الله",
@@ -18,7 +20,26 @@ class _SebhaTabState extends State<SebhaTab> {
     "لا حول و لا قوة إلا بالله"
   ];
   int index = 0;
-
+  late AnimationController controller;
+  late Animation<double> animation;
+  int degrees = 0;
+  @override
+  void initState() {
+    super.initState();
+    controller = AnimationController(
+        vsync: this,
+        duration: Duration(milliseconds: 700));
+    setRotation(degrees);
+  }
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+  void setRotation(int degrees) {
+    final angle = degrees * pi /180;
+    animation = Tween<double>(begin: 0,end: angle).animate(controller);
+  }
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -27,15 +48,18 @@ class _SebhaTabState extends State<SebhaTab> {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Container(
-              // color: Colors.black,
               alignment: Alignment.center,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Container(
-                      child: Image.asset("assets/images/head_sebha_logo.png")),
-                  Container(
-                      child: Image.asset("assets/images/body_sebha_logo.png")),
+                  AnimatedBuilder(
+                    animation: animation,
+                      child:  Image.asset("assets/images/sebha.png"),
+                      builder: (context, child) =>
+                          Transform.rotate(
+                              angle: animation.value,
+                              child: child),
+                  )
                 ],
               )),
           Text("عدد التسبيحات", style: Theme.of(context).textTheme.bodyMedium),
@@ -48,12 +72,19 @@ class _SebhaTabState extends State<SebhaTab> {
             child: InkWell(
                 onTap: () {
                   counter++;
-                  if (counter == 31) {
+                  if (counter == 34) {
                     index++;
                     if (index == tsbeehName.length) {
-                      index == 0;
+                      index = 0;
                     }
                     counter = 0;
+                    degrees = 0;
+                    setRotation(degrees);
+                    controller.forward(from: counter as double);
+                  } else {
+                    degrees = degrees + 10;
+                    setRotation(degrees);
+                    controller.forward(from: counter as double);
                   }
                   setState(() {});
                 },
