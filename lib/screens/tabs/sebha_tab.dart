@@ -80,11 +80,11 @@ class _SebhaTabState extends State<SebhaTab> with SingleTickerProviderStateMixin
                     counter = 0;
                     degrees = 0;
                     setRotation(degrees);
-                    controller.forward(from: counter as double);
+                    controller.forward(from: counter.toDouble());
                   } else {
                     degrees = degrees + 10;
                     setRotation(degrees);
-                    controller.forward(from: counter as double);
+                    controller.forward(from: counter.toDouble() );
                   }
                   setState(() {});
                 },
