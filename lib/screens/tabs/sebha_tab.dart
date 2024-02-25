@@ -1,7 +1,9 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:islamic/theme/theme.dart';
+import 'package:islamic/provider/my_provider.dart';
+import 'package:provider/provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class SebhaTab extends StatefulWidget {
   SebhaTab({super.key});
@@ -10,7 +12,8 @@ class SebhaTab extends StatefulWidget {
   State<SebhaTab> createState() => _SebhaTabState();
 }
 
-class _SebhaTabState extends State<SebhaTab> with SingleTickerProviderStateMixin{
+class _SebhaTabState extends State<SebhaTab>
+    with SingleTickerProviderStateMixin {
   int counter = 0;
   List<String> tsbeehName = [
     "سبحان الله",
@@ -26,22 +29,25 @@ class _SebhaTabState extends State<SebhaTab> with SingleTickerProviderStateMixin
   @override
   void initState() {
     super.initState();
-    controller = AnimationController(
-        vsync: this,
-        duration: Duration(milliseconds: 700));
+    controller =
+        AnimationController(vsync: this, duration: Duration(milliseconds: 700));
     setRotation(degrees);
   }
+
   @override
   void dispose() {
     controller.dispose();
     super.dispose();
   }
+
   void setRotation(int degrees) {
-    final angle = degrees * pi /180;
-    animation = Tween<double>(begin: 0,end: angle).animate(controller);
+    final angle = degrees * pi / 180;
+    animation = Tween<double>(begin: 0, end: angle).animate(controller);
   }
+
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<MyProvider>(context);
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 15),
       child: Column(
@@ -49,25 +55,27 @@ class _SebhaTabState extends State<SebhaTab> with SingleTickerProviderStateMixin
         children: [
           Container(
               alignment: Alignment.center,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
+              child: Stack(
+                alignment: Alignment.topCenter,
                 children: [
-                  AnimatedBuilder(
-                    animation: animation,
-                      child:  Image.asset("assets/images/sebha.png"),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 73.0),
+                    child: AnimatedBuilder(
+                      animation: animation,
+                      child: Image.asset(provider.getSebhaBodyPath()),
                       builder: (context, child) =>
-                          Transform.rotate(
-                              angle: animation.value,
-                              child: child),
-                  )
+                          Transform.rotate(angle: animation.value, child: child),
+                    ),
+                  ),
+                  Image.asset(provider.getSebhaHeadPath()),
                 ],
               )),
-          Text("عدد التسبيحات", style: Theme.of(context).textTheme.bodyMedium),
+          Text(AppLocalizations.of(context)!.tsbeehNum, style: Theme.of(context).textTheme.bodyLarge),
           Container(
             padding: EdgeInsets.all(12),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
-              color: MyThemeData.primaryColor,
+              color: Theme.of(context).backgroundColor,
             ),
             child: InkWell(
                 onTap: () {
@@ -80,23 +88,25 @@ class _SebhaTabState extends State<SebhaTab> with SingleTickerProviderStateMixin
                     counter = 0;
                     degrees = 0;
                     setRotation(degrees);
-                    controller.forward(from: counter as double);
+                    controller.forward(from: counter.toDouble());
                   } else {
                     degrees = degrees + 10;
                     setRotation(degrees);
-                    controller.forward(from: counter as double);
+                    controller.forward(from: counter.toDouble());
                   }
                   setState(() {});
                 },
-                child: Text("$counter")),
+                child: Text("$counter",
+                    style: Theme.of(context).textTheme.titleMedium)),
           ),
           Container(
             padding: EdgeInsets.all(12),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
-              color: MyThemeData.primaryColor,
+              color: Theme.of(context).backgroundColor,
             ),
-            child: Text("${tsbeehName[index]}"),
+            child: Text("${tsbeehName[index]}",
+                style: Theme.of(context).textTheme.titleMedium),
           ),
         ],
       ),

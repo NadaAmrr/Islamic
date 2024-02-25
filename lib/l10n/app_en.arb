@@ -1,0 +1,16 @@
+{
+  "appName": "Islami",
+  "ahadeth": "Ahadeth",
+  "suraName": "Sura Name",
+  "light": "Light",
+  "dark": "Dark",
+  "en": "English",
+  "ar": "Arabic",
+  "lang": "Language",
+  "theme": "Theme",
+  "chooseTheme": "Choose theme",
+  "chooseLang": "Choose language",
+  "settings": "settings",
+  "tsbeehNum": "Number of praises",
+  "quranRadio": "Holy Quran Radio"
+}
