@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:islamic/models/sura_model.dart';
 import 'package:islamic/screens/sura_details.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class QuranTab extends StatelessWidget {
   QuranTab({super.key});
@@ -246,22 +247,22 @@ class QuranTab extends StatelessWidget {
             child: Image.asset("assets/images/quran_logo.png")),
         Divider(
           thickness: 3,
-          color: Color(0xffb7935f),
+          color: Theme.of(context).backgroundColor,
         ),
-        Text(
-          "Sura Name",
-          style: Theme.of(context).textTheme.bodyMedium
-        ),
+        Text(AppLocalizations.of(context)!.suraName,
+            style: Theme.of(context).textTheme.bodyLarge),
         Divider(
           thickness: 3,
-          color: Color(0xffb7935f),
+          color: Theme.of(context).backgroundColor,
         ),
         Expanded(
           child: ListView.separated(
             itemBuilder: (context, index) {
               return InkWell(
                 onTap: () {
-                  Navigator.pushNamed(context, SuraDetailsScreen.routeName, arguments: SuraModel(name: suraNames[index], index: index));
+                  Navigator.pushNamed(context, SuraDetailsScreen.routeName,
+                      arguments:
+                          SuraModel(name: suraNames[index], index: index));
                 },
                 child: Text(suraNames[index],
                     style: Theme.of(context).textTheme.bodySmall,
@@ -270,11 +271,10 @@ class QuranTab extends StatelessWidget {
             },
             itemCount: suraNames.length,
             separatorBuilder: (BuildContext context, int index) => Divider(
-              thickness: 1,
-               endIndent: 50,
-               indent: 50,
-               color: Color(0xffb7935f)
-            ),
+                thickness: 1,
+                endIndent: 50,
+                indent: 50,
+                color: Theme.of(context).backgroundColor),
           ),
         )
       ],
