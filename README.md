@@ -2,11 +2,9 @@
 
 Islamic Flutter project.
 
-
+![islami](https://github.com/NadaAmrr/Islamic/assets/115532651/b491fccf-b3fc-4389-8dc9-dde2891f70a4)
 
 https://github.com/NadaAmrr/Islamic/assets/115532651/5b0133f8-c4bf-4fd4-9cfd-b01c496841d1
-
-
 
 ## Getting Started
 
